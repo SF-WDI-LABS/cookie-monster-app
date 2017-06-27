@@ -44,12 +44,13 @@ function eraseCookie(name) {
  */
 
 $(function(){
-  console.log("document.cookie is...", document.cookie);
+  var EMPTY =  "\"\"";
+  console.log("document.cookie is...", document.cookie || EMPTY);
   var can_access = readCookie('can_access');
   var fav_color = readCookie('fav_color');
 
-  console.log("Cookie: can_access is...", can_access);
-  console.log("Cookie: fav_color is...", fav_color);
+  console.log("Cookie: can_access is...", can_access  || EMPTY);
+  console.log("Cookie: fav_color is...", fav_color || EMPTY);
 
   $('body').css("background-color", fav_color || "white" );
 
