@@ -2,9 +2,19 @@
 
 <p> You can see this image because you set the cookie `can_access` equal to `yeah` in your browser. Otherwise the server would have redirected you back to the homepage.</p>
 
-<%= image_tag @dessert.img_url %>
+<% if @dessert.nil? %>
+  <p>YOU DO NOT CURRENTLY HAVE A FAVORITE.</p>
+<% else %>
+  <%= image_tag @dessert.img_url %>
+<% end %>
 
 </br>
 
 <!-- CHANGE THIS link to reflect whether the dessert has already been favorited -->
-<%= button_to "Save as Favorite", save_as_favorite_path(@dessert.id) %>
+<% if @dessert %>
+  <% if @dessert.id == session[:favorite_dessert_id] %>
+    <p>THIS IS MY FAVORITE DESSERT</p>
+  <% else %>
+    <%= button_to "Save as Favorite", save_as_favorite_path(@dessert.id) %>
+  <% end %>
+<% end %>
